@@ -1,0 +1,40 @@
+#{extends 'main.html' /}
+#{set title:'Listagem' /}
+
+<table class="table" border="1px">
+ <thead>
+   <tr>
+     <th scope="col">Codigo Anuncio</th>
+     <th scope="col">Bairro</th>
+     <th scope="col">Quantidade de comodos</th>
+     <th scope="col">Area Interna</th>
+     <th scope="col">Area Externa</th>
+	 <th scope="col">Area Total</th>
+	 <th scope="col">Tipo de imóvel</th>
+	 <th scope="col">-</th>
+	 <th scope="col">-</th>
+   </tr>
+ </thead>
+ <tbody>
+   #{list items: imoveis, as:'i'}
+   <tr>
+     <td>${i.codigoAnuncio}</td>
+     <td>${i.bairro}</td>
+     <td>${i.quantidadeComodos}</td>
+	 <td>${i.areaInterna} m²</td>
+	 <td>${i.areaExterna} m²</td>
+	 <td>${i.areaTotal} m²</td>
+	 <td>${i.tipoImovel.descricao}</td> 
+     <td><a href="@{Imoveis.editar(i.id)}">Editar</a></td>
+     <td><a href="@{Imoveis.remover(i.id)}">Remover</a></td>
+   </tr>
+   #{/list}
+   #{else}
+   <tr>
+     <td colspan="5" >Nenhuma cadastrado</td>
+   </tr>
+   #{/else}
+ </tbody>
+</table>
+	   
+<a href="@{Imoveis.form}">Novo cadastro</a>
