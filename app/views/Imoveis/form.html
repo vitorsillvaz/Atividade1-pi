@@ -13,11 +13,11 @@
 	
 	<select name="imovel.tipoImovel.id">
 		<option value="Tipo">Tipo de Imovel</option>
-	#{list items: tipo, as:'t'}
+       	#{list items: tipo, as:'t'}
 		<option value="${t.id}" ${t.id==i?.tipoImovel?.id ? 'selected' : '' }> 
 		    ${t.descricao}
 	    </option>
-	#{/list}
+	    #{/list}
 	</select> </br>
 	
 	<button type="submit">Cadastrar</button> <a href="@{Imoveis.listar}">Listagem</a>

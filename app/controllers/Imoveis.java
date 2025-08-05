@@ -25,13 +25,14 @@ public class Imoveis extends Controller {
 	}	
 	public static void salvar(Imovel imovel) {
 		// Verifica se já existe um imóvel com o mesmo código de anúncio
-		Imovel existente = Imovel.find("codigoAnuncio = ?1 and id != ?2", imovel.codigoAnuncio, imovel.id).first();
-
-		if (existente != null) {
-		    List<TipoImovel> tipo = TipoImovel.findAll();
-		    flash.error("Já existe um imóvel com este código de anúncio.");
-		    renderTemplate("Imoveis/form.html", imovel, tipo);
-		}
+	    Imovel existente = Imovel.find("codigoAnuncio = ?1", imovel.codigoAnuncio).first();
+	    
+	    if (existente != null && (imovel.id == null || !existente.id.equals(imovel.id))) {
+	   
+	    	List<TipoImovel> tipo = TipoImovel.findAll();
+	    	flash.error("Já existe um imóvel com este código de anúncio.");
+	        renderTemplate("Imoveis/form.html", imovel, tipo);
+	    }
 		
 		imovel.save();
 		listar();
